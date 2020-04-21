@@ -1,0 +1,33 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "mein beispiel skill",
+            "intents": [
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": [
+                        "hilfe"
+                    ]
+                },
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": [
+                        "abbrechen"
+                    ]
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": [
+                        "stop"
+                    ]
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
+                }
+            ],
+            "types": []
+        }
+    }
+  }
+  

@@ -1,0 +1,128 @@
+AWSTemplateFormatVersion: 2010-09-09
+Parameters:
+  ProjectAlias:
+    Type: String
+    Default: myDemoSkill
+    Description: >
+      An alias to make physical names of stack resources more easily to attribute
+    AllowedPattern: '([a-zA-Z0-9-_]+)'
+    ConstraintDescription: >
+      Must be between 1 and 64 letters,
+      and contain only alphanumeric characters, hyphens and underscores
+  DebugMode:
+    Type: String
+    Default: true
+    Description: |
+      Whether the Skill should run in debug mode. Value can bei either 'true' or 'false'
+  LambdaTimeout:
+    Type: Number
+    Default: 3
+    Description: The timeout for the Lambda function in seconds
+    MinValue: 3
+    MaxValue: 8
+  LambdaMemorySize:
+    Type: Number
+    Default: 128
+    Description: The memory size for the Lambda function in MB
+    AllowedValues:
+      - 128
+      - 256
+      - 512
+      - 1024
+  LogRetention:
+    Type: Number
+    Default: 1
+    Description: |
+      The retention period (in days) for the Lambda's Cloudwatch log group
+    AllowedValues: [1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1827, 3653]
+  SkillId:
+    Type: String
+  LambdaRuntime:
+    Type: String
+    Default: "nodejs10.x"
+    Description: |
+      The runtime environment for the Lambda function
+    AllowedValues:
+      - "nodejs10.x"
+  LambdaHandler:
+    Type: String
+    Default: "index.handler"
+    Description: |
+      The function within your deployment package that will handle incoming requests
+  CodeBucket:
+    Type: String
+  CodeKey:
+    Type: String
+  CodeVersion:
+    Type: String
+Resources:
+  LambdaRole:
+      Type: AWS::IAM::Role
+      Properties:
+        AssumeRolePolicyDocument:
+          Version: 2012-10-17
+          Statement:
+            - Effect: Allow
+              Principal:
+                Service:
+                  - lambda.amazonaws.com
+              Action:
+                - sts:AssumeRole
+        Path: /
+        Policies:
+          - PolicyName: !Join
+            - '-'
+            - - !Ref ProjectAlias
+              - 'role'
+            PolicyDocument:
+              Version: 2012-10-17
+              Statement:
+                - Effect: Allow
+                  Action:
+                    - logs:CreateLogGroup*
+                    - logs:CreateLogStream*
+                    - logs:PutLogEvents*
+                  Resource: !GetAtt LambdaLogGroup.Arn
+  LambdaFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: !Join
+        - '-'
+        - - !Ref ProjectAlias
+          - 'lambda'
+      Code:
+        S3Bucket: !Ref CodeBucket
+        S3Key: !Ref CodeKey
+        S3ObjectVersion: !Ref CodeVersion
+      Handler: !Ref LambdaHandler
+      Runtime: !Ref LambdaRuntime
+      Role: !GetAtt LambdaRole.Arn
+      MemorySize: !Ref LambdaMemorySize
+      Timeout: !Ref LambdaTimeout
+      Environment: 
+        Variables: 
+          DEBUG_MODE: !Ref DebugMode
+          PROJECT_NAME: !Ref ProjectAlias
+  LambdaFunctionEventPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:invokeFunction
+      FunctionName: !GetAtt LambdaFunction.Arn
+      Principal: alexa-appkit.amazon.com
+      EventSourceToken: !Ref SkillId
+  LambdaLogGroup:
+    Type: AWS::Logs::LogGroup
+    DeletionPolicy: Delete
+    Properties: 
+      LogGroupName: !Join
+      - ''
+      - - '/aws/lambda/'
+        - !Join
+          - '-'
+          - - !Ref ProjectAlias
+            - 'lambda'
+      RetentionInDays: !Ref LogRetention
+Outputs:
+  SkillEndpoint:
+    Description: LambdaARN for the regional endpoint
+    Value: !GetAtt LambdaFunction.Arn

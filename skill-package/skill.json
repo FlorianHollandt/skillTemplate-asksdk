@@ -1,0 +1,70 @@
+{
+  "manifest": {
+    "publishingInformation": {
+      "locales": {
+        "en-GB": {
+          "summary": "Lorem ipsum dolor sit amet",
+          "examplePhrases": [
+            "Alexa, open my demo Skill"
+          ],
+          "smallIconUri": "https://skillicons.s3.amazonaws.com/webApiStopwatch_small.png",
+          "largeIconUri": "https://skillicons.s3.amazonaws.com/webApiStopwatch_large.png",
+          "name": "My Demo Skill",
+          "description": "Lorem ipsum dolor sit amet"
+        },
+        "en-US": {
+          "summary": "Lorem ipsum dolor sit amet",
+          "examplePhrases": [
+            "Alexa, open my demo Skill"
+          ],
+          "smallIconUri": "https://skillicons.s3.amazonaws.com/webApiStopwatch_small.png",
+          "largeIconUri": "https://skillicons.s3.amazonaws.com/webApiStopwatch_large.png",
+          "name": "My Demo Skill",
+          "description": "Lorem ipsum dolor sit amet"
+        },
+        "de-DE": {
+          "summary": "Lorem ipsum dolor sit amet",
+          "examplePhrases": [
+            "Alexa, starte meinen Skill"
+          ],
+          "smallIconUri": "https://skillicons.s3.amazonaws.com/webApiStopwatch_small.png",
+          "largeIconUri": "https://skillicons.s3.amazonaws.com/webApiStopwatch_large.png",
+          "name": "Mein Beispiel-Skill",
+          "description": "Lorem ipsum dolor sit amet"
+        }
+      },
+      "isAvailableWorldwide": true,
+      "testingInstructions": "Sample Testing Instructions.",
+      "category": "GAMES",
+      "distributionCountries": []
+    },
+    "apis": {
+      "custom": {
+        "interfaces": [],
+        "endpoint": {}
+      }
+    },
+    "manifestVersion": "1.0",
+    "privacyAndCompliance": {
+      "allowsPurchases": false,
+      "usesPersonalInfo": false,
+      "isChildDirected": false,
+      "isExportCompliant": true,
+      "containsAds": false,
+      "locales": {
+        "de-DE": {
+          "privacyPolicyUrl": "",
+          "termsOfUseUrl": ""
+        },
+        "en-GB": {
+          "privacyPolicyUrl": "",
+          "termsOfUseUrl": ""
+        },
+        "en-US": {
+          "privacyPolicyUrl": "",
+          "termsOfUseUrl": ""
+        }
+      }
+    }
+  }
+}
