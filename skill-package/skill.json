@@ -39,10 +39,7 @@
       "distributionCountries": []
     },
     "apis": {
-      "custom": {
-        "interfaces": [],
-        "endpoint": {}
-      }
+      "custom": {}
     },
     "manifestVersion": "1.0",
     "privacyAndCompliance": {

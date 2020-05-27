@@ -39,11 +39,12 @@ Parameters:
     Type: String
   LambdaRuntime:
     Type: String
-    Default: "nodejs10.x"
+    Default: "nodejs12.x"
     Description: |
       The runtime environment for the Lambda function
     AllowedValues:
       - "nodejs10.x"
+      - "nodejs12.x"
   LambdaHandler:
     Type: String
     Default: "index.handler"
@@ -103,11 +104,17 @@ Resources:
         Variables: 
           DEBUG_MODE: !Ref DebugMode
           PROJECT_NAME: !Ref ProjectAlias
-  LambdaFunctionEventPermission:
+  LambdaAliasDev:
+    Type: AWS::Lambda::Alias
+    Properties:
+      FunctionName: !Ref LambdaFunction
+      FunctionVersion: $LATEST
+      Name: dev
+  LambdaAliasDevEventPermission:
     Type: AWS::Lambda::Permission
     Properties:
       Action: lambda:invokeFunction
-      FunctionName: !GetAtt LambdaFunction.Arn
+      FunctionName: !Ref LambdaAliasDev
       Principal: alexa-appkit.amazon.com
       EventSourceToken: !Ref SkillId
   LambdaLogGroup:
@@ -125,4 +132,5 @@ Resources:
 Outputs:
   SkillEndpoint:
     Description: LambdaARN for the regional endpoint
-    Value: !GetAtt LambdaFunction.Arn
+    # Value: !GetAtt LambdaFunction.Arn
+    Value: !Ref LambdaAliasDev
