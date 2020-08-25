@@ -7,8 +7,8 @@
           "examplePhrases": [
             "Alexa, open my demo Skill"
           ],
-          "smallIconUri": "https://skillicons.s3.amazonaws.com/webApiStopwatch_small.png",
-          "largeIconUri": "https://skillicons.s3.amazonaws.com/webApiStopwatch_large.png",
+          "smallIconUri": "https://skillicons.s3.amazonaws.com/skillTemplate-small.png",
+          "largeIconUri": "https://skillicons.s3.amazonaws.com/skillTemplate-large.png",
           "name": "My Demo Skill",
           "description": "Lorem ipsum dolor sit amet"
         },
@@ -17,8 +17,8 @@
           "examplePhrases": [
             "Alexa, open my demo Skill"
           ],
-          "smallIconUri": "https://skillicons.s3.amazonaws.com/webApiStopwatch_small.png",
-          "largeIconUri": "https://skillicons.s3.amazonaws.com/webApiStopwatch_large.png",
+          "smallIconUri": "https://skillicons.s3.amazonaws.com/skillTemplate-small.png",
+          "largeIconUri": "https://skillicons.s3.amazonaws.com/skillTemplate-large.png",
           "name": "My Demo Skill",
           "description": "Lorem ipsum dolor sit amet"
         },
@@ -27,8 +27,8 @@
           "examplePhrases": [
             "Alexa, starte meinen Skill"
           ],
-          "smallIconUri": "https://skillicons.s3.amazonaws.com/webApiStopwatch_small.png",
-          "largeIconUri": "https://skillicons.s3.amazonaws.com/webApiStopwatch_large.png",
+          "smallIconUri": "https://skillicons.s3.amazonaws.com/skillTemplate-small.png",
+          "largeIconUri": "https://skillicons.s3.amazonaws.com/skillTemplate-large.png",
           "name": "Mein Beispiel-Skill",
           "description": "Lorem ipsum dolor sit amet"
         }
